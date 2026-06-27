@@ -919,7 +919,7 @@
             }
         };
 
-        // All Character Avatars updated strictly to your local JPEG files!
+        // All Character Avatars updated strictly to your local JPEG file list
         const characters = {
             "Draco Malfoy": { 
                 handle: "pureblood_prince", 
@@ -1109,8 +1109,8 @@
         ];
 
         window.onload = function() {
-            // Updated to 'wwnet_adventure_save' to guarantee your regular browser tab loads freshly
-            const savedState = localStorage.getItem("wwnet_adventure_save");
+            // Using a unique final key name to force the browser to discard any old save files
+            const savedState = localStorage.getItem("wwnet_romance_v1");
             if (savedState) {
                 state = JSON.parse(savedState);
                 document.getElementById("setup-modal").classList.add("hidden");
@@ -1152,7 +1152,7 @@
             state.player.magic = 10;
             state.triggeredEvents = [];
 
-            localStorage.setItem("wwnet_adventure_save", JSON.stringify(state));
+            localStorage.setItem("wwnet_romance_v1", JSON.stringify(state));
             document.getElementById("setup-modal").classList.add("hidden");
             updateUI();
         }
@@ -1183,7 +1183,7 @@
                 badge.innerText = "🔌 Offline AI Mode";
                 badge.style.backgroundColor = "var(--accent)";
             }
-            localStorage.setItem("wwnet_adventure_save", JSON.stringify(state));
+            localStorage.setItem("wwnet_romance_v1", JSON.stringify(state));
         }
 
         function getTropeStage(characterName, romanceVal) {
@@ -1838,7 +1838,7 @@
 
         function wipeSaveAndRestart() {
             if (confirm("Are you sure you want to completely erase your wizard files and start over? All attributes, romantic progress, and messages will be lost!")) {
-                localStorage.removeItem("wwnet_adventure_save");
+                localStorage.removeItem("wwnet_romance_v1");
                 alert("Wand snapped. Floo powder lit. Restarting application...");
                 window.location.reload();
             }
